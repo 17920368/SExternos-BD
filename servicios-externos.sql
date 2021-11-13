@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-11-2021 a las 21:31:47
+-- Tiempo de generación: 13-11-2021 a las 22:49:52
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -24,27 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alcance`
---
-
-CREATE TABLE `alcance` (
-  `idAlcance` int(11) NOT NULL,
-  `nomAlcance` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `alumno`
 --
 
 CREATE TABLE `alumno` (
   `idAlumno` int(11) NOT NULL,
-  `nombre` int(11) NOT NULL,
-  `email` int(11) NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telefono` varchar(100) NOT NULL,
   `idCarrera` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+INSERT INTO `alumno` (`idAlumno`, `nombre`, `email`, `telefono`, `idCarrera`) VALUES
+(1, 'ABRAHAM VICTOR ZARAGOZA RODRIGUEZ', 'VICKO8148@GMAIL.COM', '9516129964', 2),
+(3, 'ABIGAIL JOSEFINA CUEVAS ZÁRATE', 'ABI@GMAIL.COM', '9512782182', 6);
 
 -- --------------------------------------------------------
 
@@ -83,7 +80,8 @@ CREATE TABLE `asesorexterno` (
 --
 
 INSERT INTO `asesorexterno` (`idAsesorE`, `nombre`, `email`, `telefono`) VALUES
-(1, 'Juan Perez', 'juan@gmail.com', '83728723');
+(2, 'JUAN PEREZ', 'JUAN@GMAIL.COM', '534323'),
+(3, 'LUIS', 'LUIS@GMAIL.COM', '9378133');
 
 -- --------------------------------------------------------
 
@@ -103,7 +101,8 @@ CREATE TABLE `asesorinterno` (
 --
 
 INSERT INTO `asesorinterno` (`idAsesorI`, `nombre`, `email`, `telefono`) VALUES
-(1, 'Juan Perez2', 'juan@gmail.com', '9512782182');
+(1, 'JUAN LUIS MENDEZ', 'JUAN-MENDEZ@GMAIL.COM', '9512782182'),
+(3, 'CARLOS ENRIQUE MORALES BAUTISTA', 'CARLOS.MB@VOAXACA.TECNM.MX', '916387312');
 
 -- --------------------------------------------------------
 
@@ -124,7 +123,8 @@ INSERT INTO `carrera` (`idCarrera`, `nomCarrera`) VALUES
 (2, 'INFORMÁTICA'),
 (4, 'AGRONOMIA'),
 (5, 'FORESTAL'),
-(6, 'TICS');
+(6, 'TICS'),
+(7, 'BIOLOGÍA');
 
 -- --------------------------------------------------------
 
@@ -141,6 +141,18 @@ CREATE TABLE `convenio` (
   `idTipoCon` int(11) NOT NULL,
   `idInstancia` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalleindicador`
+--
+
+CREATE TABLE `detalleindicador` (
+  `idDetalle` int(11) NOT NULL,
+  `idIndicador` int(11) NOT NULL,
+  `idConvenio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -193,6 +205,25 @@ INSERT INTO `giro` (`idGiro`, `nomGiro`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `indicador`
+--
+
+CREATE TABLE `indicador` (
+  `idIndicador` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `indicador`
+--
+
+INSERT INTO `indicador` (`idIndicador`, `nombre`, `descripcion`) VALUES
+(2, 'INDICADOR2', 'INDICADOR PUREBA');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `instancia`
 --
 
@@ -209,6 +240,13 @@ CREATE TABLE `instancia` (
   `idAlcance` int(11) DEFAULT NULL,
   `idAreaC` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `instancia`
+--
+
+INSERT INTO `instancia` (`idInstancia`, `nombre`, `responsable`, `email`, `telefono`, `idGiro`, `idSector`, `idTipoSec`, `idTamanio`, `idAlcance`, `idAreaC`) VALUES
+(2, 'COLEGIOS DE ESTUDIOS DE INFORMÁTICA', 'PAOLA ARRONA', 'CEI@GMAIL.COM', '9512782182', 1, 6, 1, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -263,7 +301,8 @@ CREATE TABLE `periodo` (
 
 INSERT INTO `periodo` (`idPeriodo`, `periodo`) VALUES
 (1, 'ENERO-JUNIO-2020'),
-(2, 'ENERO-JUNIO-2021-2');
+(2, 'ENERO-JUNIO-2021-2'),
+(4, 'ENERO-JUNIO-2019');
 
 -- --------------------------------------------------------
 
@@ -317,9 +356,9 @@ CREATE TABLE `sector` (
 --
 
 INSERT INTO `sector` (`idSector`, `nomSector`) VALUES
-(6, 'Secundario'),
-(8, 'Terciario'),
-(9, 'Primario');
+(6, 'SECUNDARIO'),
+(8, 'TERCIARIO'),
+(9, 'PRIMARIO');
 
 -- --------------------------------------------------------
 
@@ -376,7 +415,9 @@ CREATE TABLE `tipoconvenio` (
 --
 
 INSERT INTO `tipoconvenio` (`idTipoConvenio`, `nomTipoConvenio`) VALUES
-(1, 'Marco');
+(1, 'CONVENIOS DE RESIDENCIAS PROFESIONALES'),
+(3, 'CONVENIO MARCO DE COLABORACIÓN ACADÉMICA, CIENTÍFICA Y TECNOLÓGICA'),
+(4, 'CONVENIOS DE SERVICIO SOCIAL');
 
 -- --------------------------------------------------------
 
@@ -440,12 +481,6 @@ CREATE TABLE `usuario` (
 --
 
 --
--- Indices de la tabla `alcance`
---
-ALTER TABLE `alcance`
-  ADD PRIMARY KEY (`idAlcance`);
-
---
 -- Indices de la tabla `alumno`
 --
 ALTER TABLE `alumno`
@@ -486,6 +521,12 @@ ALTER TABLE `convenio`
   ADD KEY `idUsuario` (`idUsuario`);
 
 --
+-- Indices de la tabla `detalleindicador`
+--
+ALTER TABLE `detalleindicador`
+  ADD PRIMARY KEY (`idDetalle`);
+
+--
 -- Indices de la tabla `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -503,6 +544,12 @@ ALTER TABLE `flights`
 --
 ALTER TABLE `giro`
   ADD PRIMARY KEY (`idGiro`);
+
+--
+-- Indices de la tabla `indicador`
+--
+ALTER TABLE `indicador`
+  ADD PRIMARY KEY (`idIndicador`);
 
 --
 -- Indices de la tabla `instancia`
@@ -599,16 +646,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `alcance`
---
-ALTER TABLE `alcance`
-  MODIFY `idAlcance` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `areaconoc`
@@ -620,25 +661,31 @@ ALTER TABLE `areaconoc`
 -- AUTO_INCREMENT de la tabla `asesorexterno`
 --
 ALTER TABLE `asesorexterno`
-  MODIFY `idAsesorE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAsesorE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `asesorinterno`
 --
 ALTER TABLE `asesorinterno`
-  MODIFY `idAsesorI` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idAsesorI` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `carrera`
 --
 ALTER TABLE `carrera`
-  MODIFY `idCarrera` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idCarrera` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `convenio`
 --
 ALTER TABLE `convenio`
   MODIFY `idConvenio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalleindicador`
+--
+ALTER TABLE `detalleindicador`
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -659,10 +706,16 @@ ALTER TABLE `giro`
   MODIFY `idGiro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `indicador`
+--
+ALTER TABLE `indicador`
+  MODIFY `idIndicador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `instancia`
 --
 ALTER TABLE `instancia`
-  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -674,7 +727,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `periodo`
 --
 ALTER TABLE `periodo`
-  MODIFY `idPeriodo` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPeriodo` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -710,7 +763,7 @@ ALTER TABLE `tamanio`
 -- AUTO_INCREMENT de la tabla `tipoconvenio`
 --
 ALTER TABLE `tipoconvenio`
-  MODIFY `idTipoConvenio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idTipoConvenio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tiposector`
@@ -738,6 +791,7 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `alumno`
 --
 ALTER TABLE `alumno`
+  ADD CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`idCarrera`) REFERENCES `carrera` (`idCarrera`),
   ADD CONSTRAINT `idCarrera` FOREIGN KEY (`idCarrera`) REFERENCES `carrera` (`idCarrera`);
 
 --
