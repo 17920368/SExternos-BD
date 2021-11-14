@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-11-2021 a las 22:49:52
+-- Tiempo de generación: 14-11-2021 a las 22:41:29
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `servicios-externos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alcance`
+--
+
+CREATE TABLE `alcance` (
+  `idAlcance` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `alcance`
+--
+
+INSERT INTO `alcance` (`idAlcance`, `nombre`) VALUES
+(1, 'ESTATAL'),
+(2, 'NACIONAL'),
+(3, 'INTERNACIONAL');
 
 -- --------------------------------------------------------
 
@@ -59,8 +79,11 @@ CREATE TABLE `areaconoc` (
 --
 
 INSERT INTO `areaconoc` (`idAreaC`, `nomAreaC`) VALUES
-(1, 'Matematicas'),
-(2, 'Ciencias Sociales');
+(1, 'I. y T. INGENIERÍA Y TECNOLOGÍA'),
+(2, 'E.A. ECONOMÍA ADMINISTRATIVA'),
+(3, 'C.N.E. CIENCIAS NATURALES Y EXACTAS'),
+(4, 'A.F.E.P. AGROPECUARIAS, FORESTALES, EXTRACTIVAS, ETC.'),
+(5, 'H. HUMANIDADES');
 
 -- --------------------------------------------------------
 
@@ -120,11 +143,11 @@ CREATE TABLE `carrera` (
 --
 
 INSERT INTO `carrera` (`idCarrera`, `nomCarrera`) VALUES
-(2, 'INFORMÁTICA'),
-(4, 'AGRONOMIA'),
-(5, 'FORESTAL'),
-(6, 'TICS'),
-(7, 'BIOLOGÍA');
+(2, 'INGENIERÍA INFORMÁTICA'),
+(3, 'INGENIERÍA FORESTAL'),
+(4, 'INGENIERÍA AGRONOMÍA'),
+(5, 'LICENCIATURA BIOLOGÍA'),
+(6, 'INGENIERÍA TIC´S');
 
 -- --------------------------------------------------------
 
@@ -140,7 +163,7 @@ CREATE TABLE `convenio` (
   `estatus` varchar(100) NOT NULL,
   `idTipoCon` int(11) NOT NULL,
   `idInstancia` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -199,8 +222,9 @@ CREATE TABLE `giro` (
 --
 
 INSERT INTO `giro` (`idGiro`, `nomGiro`) VALUES
-(1, 'Tecnológica'),
-(2, 'Forestal');
+(1, 'EMPRESAS DEL SECTOR PRIMARIO'),
+(2, 'EMPRESAS DEL SECTOR SECUNDARIO'),
+(3, 'EMPRESAS DEL SECTOR TERCIARIO O DE SERVICIOS');
 
 -- --------------------------------------------------------
 
@@ -211,7 +235,7 @@ INSERT INTO `giro` (`idGiro`, `nomGiro`) VALUES
 CREATE TABLE `indicador` (
   `idIndicador` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(100) NOT NULL
+  `descripcion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -219,7 +243,24 @@ CREATE TABLE `indicador` (
 --
 
 INSERT INTO `indicador` (`idIndicador`, `nombre`, `descripcion`) VALUES
-(2, 'INDICADOR2', 'INDICADOR PUREBA');
+(1, 'GESTIONAR PROGRAMAS DE SERVICIO SOCIAL', 'GESTIONAR PROGRAMAS DE SERVICIO SOCIAL QUE INCIDA EN EL NUMERO DE ESTUDIANTES QUE PUEDAN REALIZAR SU SERVICIO EN LA ATENCIÓN DE LOS PROBLEMAS REGIONALES O NACIONALES PRIORITARIOS.'),
+(2, 'ESTABLECER MECANISMOS', 'ESTABLECER MECANISMOS DE COMUNICACIÓN CON INSTITUCIONES DE LOS TRES NIVELES DE GOBIERNO.'),
+(3, 'FIRMAR CONVENIOS', 'FIRMAR CONVENIOS CON DEPENDENCIAS QUE ATIENDAN PROBLEMAS REGIONALES O NACIONALES PRIORITARIOS.'),
+(4, 'INCREMENTAR Y GESTIONAR', 'INCREMENTAR Y GESTIONAR EL NÚMERO DE COMUNIDADES BENEFICIADAS POR EL SERVICIO SOCIAL.'),
+(5, 'REALIZAR CONVENIOS', 'REALIZAR CONVENIOS CON COMUNIDADES AFINES AL PROGRAMA EDUCATIVO.'),
+(6, 'REGISTRAR LOS PROGRAMAS', 'REGISTRAR LOS PROGRAMAS DE SERVICIO SOCIAL DE LAS COMUNIDADES.'),
+(7, 'PROMOVER PROGRAMAS', 'PROMOVER PROGRAMAS DE SERVICIO SOCIAL EN COMUNIDADES PRIORITARIAS O DE MARGINACIÓN.'),
+(8, 'INCREMENTAR EL NÚMERO', 'INCREMENTAR EL NÚMERO DE PERSONAS BENEFICIADAS POR LOS PRESTANTES DE SERVICIO SOCIAL.'),
+(9, 'MANTENER ACTUAIZADO EL SII', 'MANTENER ACTUALIZADO EL SISTEMA INTEGRAL DE INFORMACIÓN PARA GENERAR LA ESTADÍSTICA DE PERSONAS BENEFICIADAS POR EL SERVICIO SOCIAL.'),
+(10, 'ESTABLECER CONVENIOS', 'ESTABLECER LOS CONVENIOS DE COLABORACIÓN CON ESQUEMAS DE INVERSIÓN EN PROYECTOS DE CIENCIA, TECNOLOGÍA E INNOVACIÓN.'),
+(11, 'PROPONER ESQUEMAS', 'PROPONER ESQUEMAS DE INVERSIÓN PARA ESTABLECER PROYECTOS DE CIENCIA, TECNOLOGÍA E INNOVACIÓN EN LAS REGIONES DEL ESTADO.'),
+(12, 'PARTICIPAR EN ESQUEMAS', 'PARTICIPAR EN ESQUEMAS DE INVERSIÓN EN PROYECTOS DE CIENCIA, TECNOLOGÍA E INNOVACIÓN EN EL SECTOR REGIONAL.'),
+(13, 'FIRMAR CONEVENIOS PARA EL APROVECHAMIENTO', 'FIRMAR CONVENIOS PARA EL APROVECHAMIENTO INTERINSTITUCIONAL DE LAS INSTALACIONES.'),
+(14, 'ESQUEMAS DE CONVENIO USO COMPARTIDO', 'PROPONER ESQUEMAS DE CONVENIOS PARA EL USO COMPARTIDO DE LAS INSTALACIONES PARA LAS ACTIVIDADES CIENTÍFICAS, TECNOLÓGICAS Y DE INNOVACIÓN.'),
+(15, 'CONSEJO DE VINCULACIÓN', 'MANTENER EL CONSEJO DE VINCULACIÓN.'),
+(16, 'REALIZAR REUNIONES', 'REALIZAR REUNIONES ORDINARIAS DEL CONSEJO DE VINCULACIÓN.'),
+(17, 'MECANISMOS DE VINCULACION', 'ESTABLECER MECANISMOS DE VINCULACIÓN CON LOS DIFERENTES SECTORES DE LA INICIATIVA PRIVADA.'),
+(18, 'ACUERDO DE COOPERACIÓN', 'FIRMAR CONVENIO O ACUERDO DE COOPERACIÓN ENTRE INSTITUTOS TECNOLÓGICOS O CENTROS ADSCRITOS AL TECNM.');
 
 -- --------------------------------------------------------
 
@@ -237,16 +278,17 @@ CREATE TABLE `instancia` (
   `idSector` int(11) DEFAULT NULL,
   `idTipoSec` int(11) DEFAULT NULL,
   `idTamanio` int(11) DEFAULT NULL,
-  `idAlcance` int(11) DEFAULT NULL,
-  `idAreaC` int(11) DEFAULT NULL
+  `idAreaC` int(11) DEFAULT NULL,
+  `idAlcance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `instancia`
 --
 
-INSERT INTO `instancia` (`idInstancia`, `nombre`, `responsable`, `email`, `telefono`, `idGiro`, `idSector`, `idTipoSec`, `idTamanio`, `idAlcance`, `idAreaC`) VALUES
-(2, 'COLEGIOS DE ESTUDIOS DE INFORMÁTICA', 'PAOLA ARRONA', 'CEI@GMAIL.COM', '9512782182', 1, 6, 1, 1, NULL, 1);
+INSERT INTO `instancia` (`idInstancia`, `nombre`, `responsable`, `email`, `telefono`, `idGiro`, `idSector`, `idTipoSec`, `idTamanio`, `idAreaC`, `idAlcance`) VALUES
+(6, 'COLEGIOS DE ESTUDIOS DE INFORMÁTICA', 'PAOLA ARRONA', 'CEI@GMAIL.COM', '9512782182', 1, 2, 6, 2, 1, 2),
+(7, 'EL FIDEICOMISO DEL JARDÍN HISTÓRICO ETNOBOTÁNICO DEL CENTRO CULTURAL SANTO DOMINGO', 'LIC. ARMANDO LABRA MANJARREZ', 'jetnobot@prodigy.net.mx', '(951) 516 5325', 3, 1, 5, 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -300,9 +342,12 @@ CREATE TABLE `periodo` (
 --
 
 INSERT INTO `periodo` (`idPeriodo`, `periodo`) VALUES
-(1, 'ENERO-JUNIO-2020'),
-(2, 'ENERO-JUNIO-2021-2'),
-(4, 'ENERO-JUNIO-2019');
+(1, 'ENERO-JUNIO 2020'),
+(2, 'AGOSTO-DICIEMBRE 2020'),
+(3, 'ENERO-JUNIO 2021'),
+(4, 'AGOSTO-DICIEMBRE 2021'),
+(5, 'ENERO-JUNIO 2022'),
+(6, 'AGOSTO-DICIEMBRE 2022');
 
 -- --------------------------------------------------------
 
@@ -331,8 +376,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `proyecto` (
   `idProyecto` int(11) NOT NULL,
   `nomProyecto` int(255) NOT NULL,
-  `periodo` int(100) NOT NULL,
-  `modalidad` int(100) NOT NULL,
+  `modalidad` varchar(100) NOT NULL,
   `idAlumno` int(11) NOT NULL,
   `idPeriodo` int(11) NOT NULL,
   `idAsesorI` int(11) NOT NULL,
@@ -356,28 +400,10 @@ CREATE TABLE `sector` (
 --
 
 INSERT INTO `sector` (`idSector`, `nomSector`) VALUES
-(6, 'SECUNDARIO'),
-(8, 'TERCIARIO'),
-(9, 'PRIMARIO');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `sector2`
---
-
-CREATE TABLE `sector2` (
-  `idSector` int(10) NOT NULL,
-  `nomSector` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `sector2`
---
-
-INSERT INTO `sector2` (`idSector`, `nomSector`) VALUES
-(1, 'Terciario'),
-(2, 'Terciario22');
+(1, 'PÚBLICO'),
+(2, 'PRIVADO'),
+(3, 'SOCIAL'),
+(4, 'PRODUCTIVO');
 
 -- --------------------------------------------------------
 
@@ -395,9 +421,10 @@ CREATE TABLE `tamanio` (
 --
 
 INSERT INTO `tamanio` (`idTamanio`, `nomTamanio`) VALUES
-(1, 'Mediana'),
-(2, 'Pequeña'),
-(4, 'Grande');
+(1, 'MICROEMPRESA'),
+(2, 'PEQUEÑA'),
+(3, 'MEDIANA'),
+(4, 'GRAN EMPRESA');
 
 -- --------------------------------------------------------
 
@@ -435,8 +462,14 @@ CREATE TABLE `tiposector` (
 --
 
 INSERT INTO `tiposector` (`idTipoSec`, `nomTipoSec`) VALUES
-(1, 'tiposector'),
-(3, 'Terciario');
+(1, 'GIRO COMERCIAL'),
+(2, 'GIRO INDUSTRIAL'),
+(3, 'GIRO SOCIAL'),
+(4, 'SERVICIOS DE TURISMO'),
+(5, 'SERVICIOS DE CULTURA Y ENTRETENIMIENTO'),
+(6, 'SERVICIOS DE EDUCACIÓN'),
+(7, 'SERVICIOS PRIVADOS'),
+(8, 'SERVICIOS PÚBLICOS');
 
 -- --------------------------------------------------------
 
@@ -462,23 +495,15 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Victor Rodriguez', 'avictor.zrodriguez@gmail.com', NULL, '$2y$10$sd8MEsAlLVpRUEz.TPuSnOfpI5W5fR3moHkhqBTPcNbMktmZuKmIa', NULL, '2021-10-28 21:05:13', '2021-10-28 21:05:13');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idUsuario` int(70) NOT NULL,
-  `usuario` varchar(100) NOT NULL,
-  `contrasenia` varchar(100) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `alcance`
+--
+ALTER TABLE `alcance`
+  ADD PRIMARY KEY (`idAlcance`);
 
 --
 -- Indices de la tabla `alumno`
@@ -518,13 +543,15 @@ ALTER TABLE `convenio`
   ADD PRIMARY KEY (`idConvenio`),
   ADD KEY `idTipoCon` (`idTipoCon`),
   ADD KEY `idInstancia` (`idInstancia`),
-  ADD KEY `idUsuario` (`idUsuario`);
+  ADD KEY `id` (`id`);
 
 --
 -- Indices de la tabla `detalleindicador`
 --
 ALTER TABLE `detalleindicador`
-  ADD PRIMARY KEY (`idDetalle`);
+  ADD PRIMARY KEY (`idDetalle`),
+  ADD KEY `idConvenio` (`idConvenio`),
+  ADD KEY `idIndicador` (`idIndicador`);
 
 --
 -- Indices de la tabla `failed_jobs`
@@ -560,8 +587,8 @@ ALTER TABLE `instancia`
   ADD KEY `instancia_ibfk_2` (`idGiro`),
   ADD KEY `instancia_ibfk_3` (`idTipoSec`),
   ADD KEY `instancia_ibfk_4` (`idTamanio`),
-  ADD KEY `instancia_ibfk_5` (`idAlcance`),
-  ADD KEY `instancia_ibfk_6` (`idAreaC`);
+  ADD KEY `instancia_ibfk_6` (`idAreaC`),
+  ADD KEY `idAlcance` (`idAlcance`);
 
 --
 -- Indices de la tabla `migrations`
@@ -596,18 +623,14 @@ ALTER TABLE `proyecto`
   ADD PRIMARY KEY (`idProyecto`),
   ADD KEY `proyecto_ibfk_1` (`idinstancia`),
   ADD KEY `idAsesorE` (`idAsesorE`),
-  ADD KEY `idAsesorI` (`idAsesorI`);
+  ADD KEY `idAsesorI` (`idAsesorI`),
+  ADD KEY `idAlumno` (`idAlumno`),
+  ADD KEY `idPeriodo` (`idPeriodo`);
 
 --
 -- Indices de la tabla `sector`
 --
 ALTER TABLE `sector`
-  ADD PRIMARY KEY (`idSector`);
-
---
--- Indices de la tabla `sector2`
---
-ALTER TABLE `sector2`
   ADD PRIMARY KEY (`idSector`);
 
 --
@@ -636,14 +659,14 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `alcance`
+--
+ALTER TABLE `alcance`
+  MODIFY `idAlcance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `alumno`
@@ -655,7 +678,7 @@ ALTER TABLE `alumno`
 -- AUTO_INCREMENT de la tabla `areaconoc`
 --
 ALTER TABLE `areaconoc`
-  MODIFY `idAreaC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idAreaC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `asesorexterno`
@@ -709,13 +732,13 @@ ALTER TABLE `giro`
 -- AUTO_INCREMENT de la tabla `indicador`
 --
 ALTER TABLE `indicador`
-  MODIFY `idIndicador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idIndicador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `instancia`
 --
 ALTER TABLE `instancia`
-  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -727,7 +750,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `periodo`
 --
 ALTER TABLE `periodo`
-  MODIFY `idPeriodo` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPeriodo` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -748,16 +771,10 @@ ALTER TABLE `sector`
   MODIFY `idSector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `sector2`
---
-ALTER TABLE `sector2`
-  MODIFY `idSector` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT de la tabla `tamanio`
 --
 ALTER TABLE `tamanio`
-  MODIFY `idTamanio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTamanio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tipoconvenio`
@@ -769,19 +786,13 @@ ALTER TABLE `tipoconvenio`
 -- AUTO_INCREMENT de la tabla `tiposector`
 --
 ALTER TABLE `tiposector`
-  MODIFY `idTipoSec` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTipoSec` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(70) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -798,20 +809,22 @@ ALTER TABLE `alumno`
 -- Filtros para la tabla `convenio`
 --
 ALTER TABLE `convenio`
-  ADD CONSTRAINT `convenio_ibfk_1` FOREIGN KEY (`idTipoCon`) REFERENCES `convenio` (`idConvenio`),
+  ADD CONSTRAINT `convenio_ibfk_1` FOREIGN KEY (`idTipoCon`) REFERENCES `tipoconvenio` (`idTipoConvenio`),
   ADD CONSTRAINT `convenio_ibfk_2` FOREIGN KEY (`idInstancia`) REFERENCES `instancia` (`idInstancia`),
-  ADD CONSTRAINT `convenio_ibfk_3` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
+  ADD CONSTRAINT `convenio_ibfk_3` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `detalleindicador`
+--
+ALTER TABLE `detalleindicador`
+  ADD CONSTRAINT `detalleindicador_ibfk_1` FOREIGN KEY (`idConvenio`) REFERENCES `convenio` (`idConvenio`),
+  ADD CONSTRAINT `detalleindicador_ibfk_2` FOREIGN KEY (`idIndicador`) REFERENCES `indicador` (`idIndicador`);
 
 --
 -- Filtros para la tabla `instancia`
 --
 ALTER TABLE `instancia`
-  ADD CONSTRAINT `instancia_ibfk_1` FOREIGN KEY (`idSector`) REFERENCES `sector` (`idSector`),
-  ADD CONSTRAINT `instancia_ibfk_2` FOREIGN KEY (`idGiro`) REFERENCES `giro` (`idGiro`),
-  ADD CONSTRAINT `instancia_ibfk_3` FOREIGN KEY (`idTipoSec`) REFERENCES `tiposector` (`idTipoSec`),
-  ADD CONSTRAINT `instancia_ibfk_4` FOREIGN KEY (`idTamanio`) REFERENCES `tamanio` (`idTamanio`),
-  ADD CONSTRAINT `instancia_ibfk_5` FOREIGN KEY (`idAlcance`) REFERENCES `alcance` (`idAlcance`),
-  ADD CONSTRAINT `instancia_ibfk_6` FOREIGN KEY (`idAreaC`) REFERENCES `areaconoc` (`idAreaC`);
+  ADD CONSTRAINT `instancia_ibfk_1` FOREIGN KEY (`idAlcance`) REFERENCES `alcance` (`idAlcance`);
 
 --
 -- Filtros para la tabla `proyecto`
@@ -819,7 +832,9 @@ ALTER TABLE `instancia`
 ALTER TABLE `proyecto`
   ADD CONSTRAINT `proyecto_ibfk_1` FOREIGN KEY (`idinstancia`) REFERENCES `instancia` (`idInstancia`),
   ADD CONSTRAINT `proyecto_ibfk_2` FOREIGN KEY (`idAsesorE`) REFERENCES `asesorexterno` (`idAsesorE`),
-  ADD CONSTRAINT `proyecto_ibfk_3` FOREIGN KEY (`idAsesorI`) REFERENCES `asesorinterno` (`idAsesorI`);
+  ADD CONSTRAINT `proyecto_ibfk_3` FOREIGN KEY (`idAsesorI`) REFERENCES `asesorinterno` (`idAsesorI`),
+  ADD CONSTRAINT `proyecto_ibfk_4` FOREIGN KEY (`idAlumno`) REFERENCES `alumno` (`idAlumno`),
+  ADD CONSTRAINT `proyecto_ibfk_5` FOREIGN KEY (`idPeriodo`) REFERENCES `periodo` (`idPeriodo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
