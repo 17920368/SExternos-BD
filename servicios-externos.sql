@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-11-2021 a las 22:41:29
+-- Tiempo de generación: 19-11-2021 a las 18:48:10
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -55,14 +55,6 @@ CREATE TABLE `alumno` (
   `idCarrera` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `alumno`
---
-
-INSERT INTO `alumno` (`idAlumno`, `nombre`, `email`, `telefono`, `idCarrera`) VALUES
-(1, 'ABRAHAM VICTOR ZARAGOZA RODRIGUEZ', 'VICKO8148@GMAIL.COM', '9516129964', 2),
-(3, 'ABIGAIL JOSEFINA CUEVAS ZÁRATE', 'ABI@GMAIL.COM', '9512782182', 6);
-
 -- --------------------------------------------------------
 
 --
@@ -98,14 +90,6 @@ CREATE TABLE `asesorexterno` (
   `telefono` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `asesorexterno`
---
-
-INSERT INTO `asesorexterno` (`idAsesorE`, `nombre`, `email`, `telefono`) VALUES
-(2, 'JUAN PEREZ', 'JUAN@GMAIL.COM', '534323'),
-(3, 'LUIS', 'LUIS@GMAIL.COM', '9378133');
-
 -- --------------------------------------------------------
 
 --
@@ -118,14 +102,6 @@ CREATE TABLE `asesorinterno` (
   `email` varchar(100) NOT NULL,
   `telefono` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `asesorinterno`
---
-
-INSERT INTO `asesorinterno` (`idAsesorI`, `nombre`, `email`, `telefono`) VALUES
-(1, 'JUAN LUIS MENDEZ', 'JUAN-MENDEZ@GMAIL.COM', '9512782182'),
-(3, 'CARLOS ENRIQUE MORALES BAUTISTA', 'CARLOS.MB@VOAXACA.TECNM.MX', '916387312');
 
 -- --------------------------------------------------------
 
@@ -163,19 +139,8 @@ CREATE TABLE `convenio` (
   `estatus` varchar(100) NOT NULL,
   `idTipoCon` int(11) NOT NULL,
   `idInstancia` int(11) NOT NULL,
-  `id` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalleindicador`
---
-
-CREATE TABLE `detalleindicador` (
-  `idDetalle` int(11) NOT NULL,
-  `idIndicador` int(11) NOT NULL,
-  `idConvenio` int(11) NOT NULL
+  `idUsuario` bigint(20) UNSIGNED NOT NULL,
+  `idIndicador` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -243,13 +208,13 @@ CREATE TABLE `indicador` (
 --
 
 INSERT INTO `indicador` (`idIndicador`, `nombre`, `descripcion`) VALUES
-(1, 'GESTIONAR PROGRAMAS DE SERVICIO SOCIAL', 'GESTIONAR PROGRAMAS DE SERVICIO SOCIAL QUE INCIDA EN EL NUMERO DE ESTUDIANTES QUE PUEDAN REALIZAR SU SERVICIO EN LA ATENCIÓN DE LOS PROBLEMAS REGIONALES O NACIONALES PRIORITARIOS.'),
-(2, 'ESTABLECER MECANISMOS', 'ESTABLECER MECANISMOS DE COMUNICACIÓN CON INSTITUCIONES DE LOS TRES NIVELES DE GOBIERNO.'),
-(3, 'FIRMAR CONVENIOS', 'FIRMAR CONVENIOS CON DEPENDENCIAS QUE ATIENDAN PROBLEMAS REGIONALES O NACIONALES PRIORITARIOS.'),
-(4, 'INCREMENTAR Y GESTIONAR', 'INCREMENTAR Y GESTIONAR EL NÚMERO DE COMUNIDADES BENEFICIADAS POR EL SERVICIO SOCIAL.'),
-(5, 'REALIZAR CONVENIOS', 'REALIZAR CONVENIOS CON COMUNIDADES AFINES AL PROGRAMA EDUCATIVO.'),
-(6, 'REGISTRAR LOS PROGRAMAS', 'REGISTRAR LOS PROGRAMAS DE SERVICIO SOCIAL DE LAS COMUNIDADES.'),
-(7, 'PROMOVER PROGRAMAS', 'PROMOVER PROGRAMAS DE SERVICIO SOCIAL EN COMUNIDADES PRIORITARIAS O DE MARGINACIÓN.'),
+(1, 'CONVENIOS PARA EL APROVECHAMIENTO INTERINSTITUCIONAL', 'FIRMAR CONVENIOS PARA EL APROVECHAMIENTO INTERINSTITUCIONAL DE LAS INSTALACIONES.'),
+(2, 'FIRMAR CONVENIO ENTRE INSTITUTOS TECNOLÓGICOS O CENTROS', 'FIRMAR CONVENIO O ACUERDO DE COOPERACIÓN ENTRE INSTITUTOS TECNOLÓGICOS O CENTROS ADSCRITOS AL TECNM.'),
+(3, 'FIRMAR CONVENIO CON IES.', 'FIRMAR CONVENIO O ACUERDOS DE COOPERACIÓN CON OTRAS IES NACIONALES O INTERNACIONALES.'),
+(4, 'FIRMAR CONVENIOS CON LOS DIFERENTES SECTORES.', 'FIRMAR CONVENIOS O CONTRATOS DE VINCULACIÓN CON LOS SECTORES PÚBLICO, SOCIAL Y PRIVADO.'),
+(5, 'INSTANCIAS PARA QUE PARTICIPEN EN ESQUEMAS DE CONVENIOS.', 'SELECCIONAR INSTANCIAS PARA QUE PARTICIPEN EN ESQUEMAS DE CONVENIOS O CONTRATOS DE VINCULACIÓN DE LOS DIFERENTES SECTORES.'),
+(6, 'EMPRESAS INCUBADAS', 'GENERAR EMPRESAS INCUBADAS POR EL CIIE DEL INSTITUTO.'),
+(7, 'REALIZAR REUNIONES ORDINARIAS', 'REALIZAR REUNIONES ORDINARIAS DEL CONSEJO DE VINCULACIÓN.'),
 (8, 'INCREMENTAR EL NÚMERO', 'INCREMENTAR EL NÚMERO DE PERSONAS BENEFICIADAS POR LOS PRESTANTES DE SERVICIO SOCIAL.'),
 (9, 'MANTENER ACTUAIZADO EL SII', 'MANTENER ACTUALIZADO EL SISTEMA INTEGRAL DE INFORMACIÓN PARA GENERAR LA ESTADÍSTICA DE PERSONAS BENEFICIADAS POR EL SERVICIO SOCIAL.'),
 (10, 'ESTABLECER CONVENIOS', 'ESTABLECER LOS CONVENIOS DE COLABORACIÓN CON ESQUEMAS DE INVERSIÓN EN PROYECTOS DE CIENCIA, TECNOLOGÍA E INNOVACIÓN.'),
@@ -272,8 +237,8 @@ CREATE TABLE `instancia` (
   `idInstancia` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `responsable` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `telefono` varchar(100) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `telefono` varchar(100) DEFAULT NULL,
   `idGiro` int(11) DEFAULT NULL,
   `idSector` int(11) DEFAULT NULL,
   `idTipoSec` int(11) DEFAULT NULL,
@@ -281,14 +246,6 @@ CREATE TABLE `instancia` (
   `idAreaC` int(11) DEFAULT NULL,
   `idAlcance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `instancia`
---
-
-INSERT INTO `instancia` (`idInstancia`, `nombre`, `responsable`, `email`, `telefono`, `idGiro`, `idSector`, `idTipoSec`, `idTamanio`, `idAreaC`, `idAlcance`) VALUES
-(6, 'COLEGIOS DE ESTUDIOS DE INFORMÁTICA', 'PAOLA ARRONA', 'CEI@GMAIL.COM', '9512782182', 1, 2, 6, 2, 1, 2),
-(7, 'EL FIDEICOMISO DEL JARDÍN HISTÓRICO ETNOBOTÁNICO DEL CENTRO CULTURAL SANTO DOMINGO', 'LIC. ARMANDO LABRA MANJARREZ', 'jetnobot@prodigy.net.mx', '(951) 516 5325', 3, 1, 5, 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -375,13 +332,13 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `proyecto` (
   `idProyecto` int(11) NOT NULL,
-  `nomProyecto` int(255) NOT NULL,
+  `nomProyecto` varchar(255) NOT NULL,
   `modalidad` varchar(100) NOT NULL,
   `idAlumno` int(11) NOT NULL,
   `idPeriodo` int(11) NOT NULL,
   `idAsesorI` int(11) NOT NULL,
   `idAsesorE` int(11) NOT NULL,
-  `idinstancia` int(11) NOT NULL
+  `idInstancia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -543,14 +500,7 @@ ALTER TABLE `convenio`
   ADD PRIMARY KEY (`idConvenio`),
   ADD KEY `idTipoCon` (`idTipoCon`),
   ADD KEY `idInstancia` (`idInstancia`),
-  ADD KEY `id` (`id`);
-
---
--- Indices de la tabla `detalleindicador`
---
-ALTER TABLE `detalleindicador`
-  ADD PRIMARY KEY (`idDetalle`),
-  ADD KEY `idConvenio` (`idConvenio`),
+  ADD KEY `id` (`idUsuario`),
   ADD KEY `idIndicador` (`idIndicador`);
 
 --
@@ -621,7 +571,7 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `proyecto`
   ADD PRIMARY KEY (`idProyecto`),
-  ADD KEY `proyecto_ibfk_1` (`idinstancia`),
+  ADD KEY `proyecto_ibfk_1` (`idInstancia`),
   ADD KEY `idAsesorE` (`idAsesorE`),
   ADD KEY `idAsesorI` (`idAsesorI`),
   ADD KEY `idAlumno` (`idAlumno`),
@@ -705,12 +655,6 @@ ALTER TABLE `convenio`
   MODIFY `idConvenio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `detalleindicador`
---
-ALTER TABLE `detalleindicador`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -738,7 +682,7 @@ ALTER TABLE `indicador`
 -- AUTO_INCREMENT de la tabla `instancia`
 --
 ALTER TABLE `instancia`
-  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -768,7 +712,7 @@ ALTER TABLE `proyecto`
 -- AUTO_INCREMENT de la tabla `sector`
 --
 ALTER TABLE `sector`
-  MODIFY `idSector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idSector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tamanio`
@@ -811,14 +755,8 @@ ALTER TABLE `alumno`
 ALTER TABLE `convenio`
   ADD CONSTRAINT `convenio_ibfk_1` FOREIGN KEY (`idTipoCon`) REFERENCES `tipoconvenio` (`idTipoConvenio`),
   ADD CONSTRAINT `convenio_ibfk_2` FOREIGN KEY (`idInstancia`) REFERENCES `instancia` (`idInstancia`),
-  ADD CONSTRAINT `convenio_ibfk_3` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `detalleindicador`
---
-ALTER TABLE `detalleindicador`
-  ADD CONSTRAINT `detalleindicador_ibfk_1` FOREIGN KEY (`idConvenio`) REFERENCES `convenio` (`idConvenio`),
-  ADD CONSTRAINT `detalleindicador_ibfk_2` FOREIGN KEY (`idIndicador`) REFERENCES `indicador` (`idIndicador`);
+  ADD CONSTRAINT `convenio_ibfk_3` FOREIGN KEY (`idUsuario`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `convenio_ibfk_4` FOREIGN KEY (`idIndicador`) REFERENCES `indicador` (`idIndicador`);
 
 --
 -- Filtros para la tabla `instancia`
