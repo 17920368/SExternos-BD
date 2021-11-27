@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-11-2021 a las 18:48:10
+-- Tiempo de generación: 27-11-2021 a las 20:01:52
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -137,11 +137,20 @@ CREATE TABLE `convenio` (
   `fechaFirma` date NOT NULL,
   `fechaVigencia` date NOT NULL,
   `estatus` varchar(100) NOT NULL,
+  `urlConvenio` varchar(500) NOT NULL,
   `idTipoCon` int(11) NOT NULL,
   `idInstancia` int(11) NOT NULL,
   `idUsuario` bigint(20) UNSIGNED NOT NULL,
   `idIndicador` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `convenio`
+--
+
+INSERT INTO `convenio` (`idConvenio`, `folio`, `fechaFirma`, `fechaVigencia`, `estatus`, `urlConvenio`, `idTipoCon`, `idInstancia`, `idUsuario`, `idIndicador`) VALUES
+(1, '60/GTYV/2021', '2021-11-27', '2023-12-28', 'VIGENTE', 'https://snitmx-my.sharepoint.com/:b:/r/personal/vin_voaxaca_tecnm_mx/Documents/CONVENIOS%20PDF%C2%B4S/CONVENIOS%202021/060-CSS-2021-FILATELIA.PDF?csf=1&web=1&e=yfGbWd', 4, 10, 1, 6),
+(2, '10/GTYV/2020', '2021-11-12', '2021-12-04', 'VIGENTE', 'HTTPS://SNITMX-MY.SHAREPOINT.COM/:B:/R/PERSONAL/VIN_VOAXACA_TECNM_MX/DOCUMENTS/CONVENIOS%20PDF%C2%B4S/CONVENIOS%202021/060-CSS-2021-FILATELIA.PDF?CSF=1&WEB=1&E=YFGBWD', 3, 10, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -246,6 +255,13 @@ CREATE TABLE `instancia` (
   `idAreaC` int(11) DEFAULT NULL,
   `idAlcance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `instancia`
+--
+
+INSERT INTO `instancia` (`idInstancia`, `nombre`, `responsable`, `email`, `telefono`, `idGiro`, `idSector`, `idTipoSec`, `idTamanio`, `idAreaC`, `idAlcance`) VALUES
+(10, 'MUSEO DE LA FILATELIA DE OAXACA A.C', 'JUAN PEREZ COLOTE', 'FILATELIA@GMAIL.COM', '9472934', 1, 1, 6, 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -652,7 +668,7 @@ ALTER TABLE `carrera`
 -- AUTO_INCREMENT de la tabla `convenio`
 --
 ALTER TABLE `convenio`
-  MODIFY `idConvenio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idConvenio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -682,7 +698,7 @@ ALTER TABLE `indicador`
 -- AUTO_INCREMENT de la tabla `instancia`
 --
 ALTER TABLE `instancia`
-  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idInstancia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
